@@ -1,0 +1,15 @@
+# https://guides.rubyonrails.org/configuring.html#custom-configuration
+development:
+ # https://docs.spreedly.com/basics/credentials/
+ environment_key: '<environment_key>'
+ access_secret: '<access_secret>'
+ 
+ # curl https://core.spreedly.com/v1/gateways.json \
+ #   -u "$ENV_KEY:$ACCESS_SECRET" \
+ #   -H 'Content-Type: application/json' \
+ #   -d '{
+ #         "gateway": {
+ #           "gateway_type": "test"
+ #         }
+ #       }'
+ gateway_token: '<gateway_token>'
