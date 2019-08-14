@@ -6,7 +6,6 @@
   <%= link_to image_tag("logo_b.png", alt: "Spreedly logo"), root_path, class: "header-logo" %>
   <script src="https://core.spreedly.com/iframe/express-2.min.js"></script>
   <form id="payment-form" action="/result">
-    <input type="hidden" name="spreedly_environment_key" id="spreedly_environment_key">
     <input type="hidden" name="payment_method_token" id="payment_method_token">
     <input type="hidden" name="full_name" id="full_name">
     <input type="hidden" name="month" id="month">
