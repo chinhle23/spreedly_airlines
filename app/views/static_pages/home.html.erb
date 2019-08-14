@@ -1,14 +1,54 @@
 <div class="center jumbotron">
-  <h1>Welcome to Spreedly Airlines Sample App</h1>
+  <h1>
+    Welcome to Spreedly Airlines 
+  </h1>
 
-  <h2>
+  <%= link_to image_tag("logo_b.png", alt: "Spreedly logo"), root_path, class: "header-logo" %>
+  <script src="https://core.spreedly.com/iframe/express-2.min.js"></script>
+  <form id="payment-form" action="/result">
+    <input type="hidden" name="spreedly_environment_key" id="spreedly_environment_key">
+    <input type="hidden" name="payment_method_token" id="payment_method_token">
+    <input type="hidden" name="full_name" id="full_name">
+    <input type="hidden" name="month" id="month">
+    <input type="hidden" name="year" id="year">
+    <input type="button" value="Enter Payment Info" onclick="SpreedlyExpress.openView();">
+  </form>
+
+  <%# <h2>
     This is the home page for the
     <a href="https://www.railstutorial.org/">Ruby on Rails Tutorial</a>
     sample application.
-  </h2>
+  </h2> %>
 
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>
+  <%# <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary"  %>
 </div>
 
-<%= link_to image_tag("rails.png", alt: "Rails logo"),
+<script>
+  SpreedlyExpress.init("PdP9T8axLXYKeyA8H5K8moP5c2W", {
+    "amount": "$9.83",
+    "company_name": "Acme Widgets"
+  });
+
+  SpreedlyExpress.onPaymentMethod(function(token, paymentMethod) {
+
+    // Send requisite payment method info to backend
+    var tokenField = document.getElementById("payment_method_token");
+
+    tokenField.setAttribute("value", token);
+
+    var masterForm = document.getElementById('payment-form');
+    masterForm.submit();
+  });
+
+  let handlePaymentToken = function(token, formData) {
+    document.getElementById('full_name').value = formData["full_name"]
+    document.getElementById('month').value = formData["month"]
+    document.getElementById('year').value = formData["year"]
+    document.getElementById('payment_method_token').value = token
+    document.getElementById('payment-form').submit();
+  }
+  SpreedlyExpress.onPaymentMethod(handlePaymentToken);
+</script>
+
+<%# <%= link_to image_tag("rails.png", alt: "Rails logo"),
             'http://rubyonrails.org/' %>

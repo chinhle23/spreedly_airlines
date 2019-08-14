@@ -1,0 +1,34 @@
+<% provide(:title, "Result") %>
+<h1>Result</h1>
+<h1>Spreedly Express success</h1>
+<p>  Spreedly Express successfully added a payment token to the sample form. </p>
+<p> The sample form was submitted successfully!!! </p>
+
+<h3>Parameters Submitted From Master Form</h3>
+<ul id="parameters">
+</ul>
+<br/>
+<a href="/">Back to basic example</a>
+
+<br/><br/><br/>
+<%= @payment_token %> 
+<%= @gateway_token %>
+<%= @purchase_uri %>
+<%= @parsed_purchase_response %>
+
+<script>
+  function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+      results = regex.exec(location.search);
+    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+  }
+  var params = ['payment_method_token', 'full_name', 'month', 'year']
+  var ul = document.getElementById('parameters');
+  for(var i = 0; i < params.length; i++) {
+    li = document.createElement('li');
+    var param = params[i];
+    li.innerHTML = param + ': ' + getParameterByName(param);
+    ul.appendChild(li);
+  }
+</script>
