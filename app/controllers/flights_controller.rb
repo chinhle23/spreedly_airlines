@@ -17,5 +17,6 @@ class FlightsController < ApplicationController
 
   def show
     @flight = Flight.find(params[:id])
+    @environment_key = Rails.configuration.spreedly['environment_key']
   end
 end
