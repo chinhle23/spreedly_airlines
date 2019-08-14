@@ -25,4 +25,5 @@
 # Ignore Spring files.
 /spring/*.pid
 
+/config/secrets.yml
 /config/spreedly.yml
