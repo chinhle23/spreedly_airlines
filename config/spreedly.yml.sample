@@ -1,15 +1,37 @@
 # https://guides.rubyonrails.org/configuring.html#custom-configuration
 development:
- # https://docs.spreedly.com/basics/credentials/
- environment_key: '<environment_key>'
- access_secret: '<access_secret>'
- 
- # curl https://core.spreedly.com/v1/gateways.json \
- #   -u "$ENV_KEY:$ACCESS_SECRET" \
- #   -H 'Content-Type: application/json' \
- #   -d '{
- #         "gateway": {
- #           "gateway_type": "test"
- #         }
- #       }'
- gateway_token: '<gateway_token>'
+  # https://docs.spreedly.com/basics/credentials/
+  environment_key: '<environment_key>'
+  access_secret: '<access_secret>'
+  
+  # curl https://core.spreedly.com/v1/gateways.json \
+  #   -u '<environment_key>:<access_secret>' \
+  #   -H 'Content-Type: application/json' \
+  #   -d '{
+  #         "gateway": {
+  #           "gateway_type": "test"
+  #         }
+  #       }'
+  gateway_token: '<gateway_token>'
+
+  # curl https://core.spreedly.com/v1/receivers.json \
+  #   -u '<environment_key>:<access_secret>' \
+  #   -H 'Content-Type: application/json' \
+  #   -d '{
+  #         "receiver": {
+  #           "receiver_type": "test",
+  #           "hostnames": "https://spreedly-echo.herokuapp.com",
+  #           "credentials": [
+  #             {
+  #               "name": "app-id",
+  #               "value": 1234,
+  #               "safe": true
+  #             },
+  #             {
+  #               "name": "app-secret",
+  #               "value": 5678
+  #             }
+  #           ]
+  #         }
+  #       }'
+  receiver_token: '<receiver_token>'

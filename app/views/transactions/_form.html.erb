@@ -1,0 +1,15 @@
+<h3>Create a Transaction</h3>
+ 
+<%= form_for [ @flight, @transaction ] do |f| %>
+  <p>
+    <%= f.label :transaction_token %><br/>
+    <%= f.text_field :transaction_token %>
+  </p>
+  <p>
+    <%= f.label :total_price %><br/>
+    <%= f.number_field :total_price %>
+  </p>
+  <p>
+    <%= f.submit 'Submit' %>
+  </p>
+<% end %>

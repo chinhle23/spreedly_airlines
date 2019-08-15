@@ -1,0 +1,15 @@
+<div class="center jumbotron">
+
+  <h2>All transactions:</h2>
+  
+  <ul id="transactions">
+    <% @transactions.each do |transaction| %>
+      <li>
+        Created At: <%= transaction.created_at %> | 
+        Transaction Token: <%= transaction.transaction_token %> | 
+        Total Charge: $<%= transaction.total_price %>
+      </li>
+    <% end %>
+  </ul>
+
+</div>

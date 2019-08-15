@@ -7,8 +7,10 @@
     <li>Price: $<%= @flight.price %></li>
   </ul>
 
-  <form id="payment-form" action="/result">
-    <input type="hidden" name="environment_key" id="environment_key" value="<%= @environment_key %>">
+  <h3>Transactions</h3>
+  <%= render partial: 'flights/transaction', collection: @flight.transactions %>
+  <%= render partial: 'transactions/form' %>
+  <form id="payment-form" action="/flights/<%= @flight.id %>/transactions/create">
     <input type="hidden" name="payment_method_token" id="payment_method_token">
     <input type="hidden" name="full_name" id="full_name">
     <input type="hidden" name="month" id="month">
@@ -21,7 +23,9 @@
 <script>
   SpreedlyExpress.init("<%= "#{@environment_key}" %>", {
     "amount": "<%= "$#{@flight.price}" %>",
-    "company_name": "Spreedly Airlines"
+    "company_name": "Spreedly Airlines",
+    "sidebar_top_description": "Confirm Purchase",
+    "sidebar_bottom_description": "<%= "#{@flight.origin}" %> to <%= "#{@flight.destination}" %>"
   });
 
   SpreedlyExpress.onPaymentMethod(function(token, paymentMethod) {
@@ -43,4 +47,5 @@
     document.getElementById('payment-form').submit();
   }
   SpreedlyExpress.onPaymentMethod(handlePaymentToken);
+
 </script>
