@@ -1,18 +1,26 @@
 <div class="center jumbotron">
-  
-  <h1>Welcome to Spreedly Airlines</h1>
-  <%= link_to image_tag("logo_b.png", alt: "Spreedly logo"), root_path, class: "header-logo" %>
 
-  <h2>Available Flights (click on price to proceed)</h2>
-  
-  <ul id="flights">
+  <table>
+    <tr>
+      <th>Origin</th>
+      <th>Destination</th>
+      <th>Price</th>
+    </tr>
     <% @flights.each do |flight| %>
-      <li>
-        Origin Airport: <%= flight.origin %> | 
-        Destination Airport: <%= flight.destination %> | 
-        Price: $<%= link_to flight.price, flight_path(flight) %>
-      </li>
+    <tr>
+      <td><%= flight.origin %></td>
+      <td><%= flight.destination %></td>
+      <td>$<%= flight.price %></td>
+      <td>
+        <form action="/flights/<%= flight.id %>/transactions/new" id="payment-form">
+          <span>
+            <input type="checkbox" name="hotel" value="true"> Add a hotel room for $200?
+            <input type="submit" value="Select Flight">
+          </span>
+        </form>
+      </td>
+    </tr>
     <% end %>
-  </ul>
+  </table>
 
 </div>
