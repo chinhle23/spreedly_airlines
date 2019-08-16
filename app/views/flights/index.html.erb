@@ -1,10 +1,12 @@
 <div class="center jumbotron">
+  <h2>Available Flights<h2>
 
   <table>
     <tr>
-      <th>Origin</th>
-      <th>Destination</th>
-      <th>Price</th>
+      <th>Origin  |</th> 
+      <th> Destination  |</th> 
+      <th> Price  |</th>
+      <th> Add $200 Hotel Room?</th>
     </tr>
     <% @flights.each do |flight| %>
     <tr>
@@ -13,10 +15,8 @@
       <td>$<%= flight.price %></td>
       <td>
         <form action="/flights/<%= flight.id %>/transactions/new" id="payment-form">
-          <span>
-            <input type="checkbox" name="hotel" value="true"> Add a hotel room for $200?
+            <input type="checkbox" name="hotel" value="true"> >>>>>>>>>>>>>>>   
             <input type="submit" value="Select Flight">
-          </span>
         </form>
       </td>
     </tr>

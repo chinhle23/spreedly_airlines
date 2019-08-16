@@ -2,9 +2,9 @@
 
 <table>
   <tr>
-    <th>Origin</th>
-    <th>Destination</th>
-    <th>Flight Price</th>
+    <th>Origin  |</th>
+    <th>Destination  |</th>
+    <th>Flight Price  |</th>
     <th>Total Price</th>
   </tr>
 
@@ -16,10 +16,9 @@
   </tr>
 </table><br><br>
 
-<%= @transaction.id %> <%= @transaction.transaction_token %> <%= @transaction.total_price %>
-
 <form action="/flights/<%= @flight.id %>/transactions/new" id="payment-form">
   <input type="hidden" name="payment_method_token" id="payment_method_token">
+  <input type="hidden" name="total_charge" id="total_charge" value=<%= @total_price %>>
   <input type="checkbox" name="save_card" value="true" checked> Save card for future use?<br>
   <input type="button" value="Checkout" onclick="SpreedlyExpress.openView();">
 </form>

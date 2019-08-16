@@ -1,13 +1,11 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
-    <div class="container">
-        <%= link_to "spreedly airlines", root_path, id: "logo" %>
-        
-        <nav>
-            <ul class="nav navbar-nav navbar-right">
-                <li><%= link_to "Home",   root_path %></li>
-                <li><%= link_to "Result",   result_path %></li>
-                <li><%= link_to "Log in", '#' %></li>
-            </ul>
-        </nav>
-    </div>
+	<div class="container">
+		<%= link_to "spreedly airlines", root_path, id: "logo" %>
+		<nav>
+			<ul class="nav navbar-nav navbar-right">
+				<li><%= link_to "Transactions",   flight_transactions_path(1) %></li>
+				<li><%= link_to "Create a New Flight", new_flight_path %></li>
+			</ul>
+		</nav>
+	</div>
 </header>

@@ -21,7 +21,7 @@ class TransactionsController < ApplicationController
     
     if params[:payment_method_token]
       payment_token = params[:payment_method_token]
-
+      total_charge = params[:total_charge].to_i
       # build the cURL command mentioned here: https://docs.spreedly.com/basics/purchase/
       purchase_uri = URI("https://core.spreedly.com/v1/gateways/#{Rails.configuration.spreedly['gateway_token']}/purchase.json")
       purchase_post_request = Net::HTTP::Post.new(purchase_uri)
@@ -51,7 +51,7 @@ class TransactionsController < ApplicationController
       @transaction.save
       flash.notice = "Transaction #{transaction_token} Completed!"
 
-      if @total_price == @flight.price
+      if total_charge != @flight.price
         pmd_delivery_uri = URI("https://core.spreedly.com/v1/receivers/#{Rails.configuration.spreedly['receiver_token']}/deliver.json")
         pmd_delivery_post_request = Net::HTTP::Post.new(pmd_delivery_uri)
 
@@ -75,7 +75,6 @@ class TransactionsController < ApplicationController
         end
         parsed_pmd_delivery_response = JSON.parse(pmd_delivery_response)
         pmd_transaction_token = parsed_pmd_delivery_response['transaction']['token']
-        flash.notice = "PMD Transaction #{pmd_transaction_token} Completed!"
       end 
     end
   
@@ -83,10 +82,5 @@ class TransactionsController < ApplicationController
   end
 
   def create
-    @transaction = Transaction.new(transaction_params)
-    @transaction.flight_id = params[:flight_id]
-    @transaction.save
-    flash.notice = "Transaction '#{@transaction.transaction_token}' Created!"
-    redirect_to flight_path(@transaction.flight)
   end
 end
